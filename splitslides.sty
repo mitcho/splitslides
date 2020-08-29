@@ -1,0 +1,66 @@
+% splitslides - for making simple "slides"
+% Michael Yoshitaka Erlewine (mitcho)
+% dedicated to the public domain 2020
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{splitslides}[splitslides]
+
+\newif\if@SplitSlidesActive\@SplitSlidesActivefalse
+\DeclareOption{active}{
+	\@SplitSlidesActivetrue
+	\PassOptionsToPackage{active}{preview}
+}
+\newif\if@SplitSlidesHide\@SplitSlidesHidefalse
+\DeclareOption{hide}{
+	\@SplitSlidesHidetrue
+}
+\ProcessOptions\relax
+
+\RequirePackage{xcolor}
+\RequirePackage[xetex,tightpage,delayed]{preview}
+\PreviewBorder=40pt\relax
+
+\colorlet{SplitSlidesStartColor}{white!0.5!blue}
+\colorlet{SplitSlidesBreakColor}{white!0.9!black}
+\colorlet{SplitSlidesEndColor}{white!0.5!red}
+
+\newcommand{\slidestart}{%
+\ifPreview\pr@startbox{\begingroup%
+	\renewcommand{\footnote}[1]{}%
+	\renewcommand{\footnotemark}[1]{}%
+	\aftergroup\pr@endbox}{}\else%
+\if@SplitSlidesHide\else
+	\par%
+	\vspace*{\dimexpr-\parskip-0.5\baselineskip}%
+	\noindent\makebox[\linewidth]{%
+		\textcolor{SplitSlidesStartColor}{\rule{\paperwidth}{0.2pt}}}\par%
+	\vspace*{\dimexpr-\parskip-0.5\baselineskip}%
+\fi\fi}
+
+\newcommand{\slidebreak}{%
+\ifPreview\endgroup\pr@startbox{\begingroup%
+	\renewcommand{\footnote}[1]{}%
+	\renewcommand{\footnotemark}[1]{}%
+	\aftergroup\pr@endbox}{}\else%
+\if@SplitSlidesHide\else
+	\par%
+	\vspace*{\dimexpr-\parskip-0.5\baselineskip}%
+	\noindent\makebox[\linewidth]{%
+		\textcolor{SplitSlidesBreakColor}{\rule{\paperwidth}{0.2pt}}}\par%
+	\vspace*{\dimexpr-\parskip-0.5\baselineskip}%
+\fi\fi}
+
+\newcommand{\slideend}{%
+\ifPreview\endgroup\else%
+\if@SplitSlidesHide\else
+	\par%
+	\vspace*{\dimexpr-\parskip-0.5\baselineskip}%
+	\noindent\makebox[\linewidth]{%
+		\textcolor{SplitSlidesEndColor}{\rule{\paperwidth}{0.2pt}}}\par%
+	\vspace*{\dimexpr-\parskip-0.5\baselineskip}%
+\fi\fi}
+
+\newcommand{\slideonly}[1]{%
+\if@SplitSlidesActive%
+#1%
+\fi}
