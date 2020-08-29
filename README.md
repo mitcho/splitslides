@@ -18,7 +18,7 @@ It is easiest to explain the package usage by example:
 
 ## How to
 
-- *How to hide something in the slides:* End the slide above with `\slideend`, enter the content that should only be in the full document, and then start the next slide with `\slidestart`. The material in between will now show up in the slides.
+- *How to hide something in the slides:* End the slide above with `\slideend`, enter the content that should only be in the full document, and then start the next slide with `\slidestart`. The material in between will not show up in the slides.
 - *How to hide something in the full document:* You can wrap some content in `\slideonly{...}` and it will only appear in "active" slide mode.
 - *How to do something more complicated, like overlays with Beamer `\pause`:* Please use Beamer.
 
