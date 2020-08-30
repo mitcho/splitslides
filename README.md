@@ -18,8 +18,8 @@ It is easiest to explain the package usage by example:
 
 ## How to
 
-- **How to include figures and tables (without getting a "Not in outer par mode" error):** Add `\usepackage{float}` to the preamble and use the [H] placement option. --- [tip from @qpheevr](https://twitter.com/qpheevr/status/1299835281852506113)
-- *How to split a list across multiple slides:* Unfortunately `\slidestart` / `\slidebreak` / `\slideend` **cannot** be used inside a list (e.g. `itemize`, `enumerate`, `exe` etc.). If you want `\slidebreak` etc. in a list, my suggestion is to split up the list into multiple lists.
+- **How to include figures and tables (without getting a "Not in outer par mode" error):** Add `\usepackage{float}` to the preamble and use the [H] placement option. — [tip from @qpheevr](https://twitter.com/qpheevr/status/1299835281852506113)
+- **How to split a list across multiple slides:** Unfortunately `\slidestart` / `\slidebreak` / `\slideend` **cannot** be used inside a list (e.g. `itemize`, `enumerate`, `exe` etc.). If you want `\slidebreak` etc. in a list, my suggestion is to split up the list into multiple lists.
 	* If you are writing an enumerated list with `enumerate` and need your numbering to persist across multiple slides, you can use the `enumitem` package to retain numbering across multiple `enumerate` environments (look for the `resume` option in `enumitem` docs).
 	* (I have looked into getting around it briefly and think it would be a headache so I don't plan on "fixing" this limitation.)
 - **How to hide something in the slides:** End the slide above with `\slideend`, enter the content that should only be in the full document, and then start the next slide with `\slidestart`. The material in between will not show up in the slides.
